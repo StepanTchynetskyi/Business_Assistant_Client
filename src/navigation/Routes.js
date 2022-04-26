@@ -1,19 +1,24 @@
 import React from "react";
 import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
+    BrowserRouter,
+    Routes,
+    Route,
 } from "react-router-dom";
 import Home from "../components/Home"
-import Header from "../components/Header";
+import Login from "../components/Login"
+import SignUp from "../components/SignUp";
 
-export default function NavigationRoutes(){
-  return(
-    <Router>
-        <Header/>
-      <Routes>
-          <Route path="/home" element={<Home />}/>
-        </Routes>
-    </Router>
-  );
+export default function NavigationRoutes() {
+    return (
+        <BrowserRouter>
+            <Routes>
+
+                    <Route path="/home" element={<Home/>}/>
+
+                    <Route path="/login" element={<Login/>}/>
+                    <Route path="/signup" element={<SignUp/>}/>
+
+            </Routes>
+        </BrowserRouter>
+    );
 }

@@ -11,7 +11,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-
+import { useNavigate } from "react-router-dom";
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
@@ -34,7 +34,7 @@ const ResponsiveAppBar = () => {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
-
+    let navigate = useNavigate()
     return (
         <AppBar position="static" sx={{bgcolor: "#186db6"}}>
             <Container maxWidth="100%">
@@ -136,14 +136,14 @@ const ResponsiveAppBar = () => {
                         </Box>) : (
                         <Box sx={{ display: {xs: 'none', md: 'flex'}}}>
                             <Button
-                                onClick={handleCloseNavMenu}
+                                onClick={()=>navigate("/login")}
                                 sx={{mr:2,my: 2, color: 'white', display: 'block'}}
                                 style={{fontSize: '1.15em', marginRight:"100"}}
                             >
                                 Login
                             </Button>
                             <Button
-                                onClick={handleCloseNavMenu}
+                                onClick={()=>navigate("/signup")}
                                 sx={{my: 2, color: 'white', display: 'block'}}
                                 style={{fontSize: '1.15em', borderColor: "white", marginRight: "10px"}}
                                 variant="outlined"
