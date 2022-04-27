@@ -12,6 +12,9 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import {useDispatch} from "react-redux";
+import {authActions} from "../store/auth-slice";
+import {useNavigate} from "react-router-dom";
 
 function Copyright(props) {
   return (
@@ -29,6 +32,8 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function Login() {
+    const dispatch = useDispatch()
+    let navigate = useNavigate()
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -36,6 +41,9 @@ export default function Login() {
       email: data.get('email'),
       password: data.get('password'),
     });
+    dispatch(authActions.login())
+
+      navigate("/home")
   };
 
   return (

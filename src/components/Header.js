@@ -12,11 +12,14 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { useNavigate } from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {authActions} from "../store/auth-slice";
 const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Profile', 'Account', 'Dashboard'];
 
 const ResponsiveAppBar = () => {
-    const [auth, setAuth] = React.useState(false);
+    const auth = useSelector((state)=>state.auth.user)
+    const dispatch = useDispatch();
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -26,7 +29,9 @@ const ResponsiveAppBar = () => {
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
     };
-
+    const handleLogout = (event) =>{
+        dispatch(authActions.logout())
+    }
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
     };
@@ -132,6 +137,9 @@ const ResponsiveAppBar = () => {
                                         <Typography textAlign="center">{setting}</Typography>
                                     </MenuItem>
                                 ))}
+                                <MenuItem onClick={handleLogout}>
+                                        <Typography textAlign="center">Logout</Typography>
+                                    </MenuItem>
                             </Menu>
                         </Box>) : (
                         <Box sx={{ display: {xs: 'none', md: 'flex'}}}>
